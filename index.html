@@ -391,57 +391,6 @@
 
     }
 
-
-    /* =========================
-       CANVA
-    ========================= */
-
-    #canvaContainer {
-
-      position: fixed;
-
-      inset: 0;
-
-      z-index: 100;
-
-      width: 100vw;
-      height: 100vh;
-
-      background: white;
-
-      display: none;
-
-      overflow: hidden;
-
-    }
-
-
-    #canvaContainer.show {
-
-      display: block;
-
-    }
-
-
-    #canvaFrame {
-
-      position: absolute;
-
-      top: 0;
-      left: 0;
-
-      width: 100%;
-      height: 100%;
-
-      border: 0;
-
-      padding: 0;
-      margin: 0;
-
-      display: block;
-
-    }
-
   </style>
 
 </head>
@@ -483,6 +432,7 @@
     muted
     playsinline
     webkit-playsinline
+    loop
     preload="auto"
   >
 
@@ -544,23 +494,6 @@
     </span>
   </button>
 
-
-  <!-- =========================
-       CANVA
-  ========================= -->
-
-  <div id="canvaContainer">
-
-    <iframe
-      id="canvaFrame"
-      title="Invitation"
-      allow="fullscreen"
-      allowfullscreen
-    ></iframe>
-
-  </div>
-
-
 </div>
 
 
@@ -596,27 +529,7 @@
     document.getElementById(
       "soundButtonText"
     );
-
-  const canvaContainer =
-    document.getElementById(
-      "canvaContainer"
-    );
-
-  const canvaFrame =
-    document.getElementById(
-      "canvaFrame"
-    );
-
-
-  /* =========================
-     CANVA URL
-     ========================= */
-
-  const CANVA_URL =
-    "https://zekra.link/hhennaa";
-
-
-  /* =========================
+/* =========================
      VIDEO 1
      ========================= */
 
@@ -637,19 +550,6 @@
   video1.addEventListener(
     "ended",
     startVideo2
-  );
-
-
-  video2.addEventListener(
-    "ended",
-    async function () {
-
-      await startMusic();
-
-      window.location.href =
-        CANVA_URL;
-
-    }
   );
 
 
@@ -933,29 +833,14 @@
 
 
   /* =====================================================
-     SHOW CANVA
+     REDIRECT TO THE REAL INVITATION WEBSITE
      ===================================================== */
-
-  function showCanva() {
-
+  function openInvitationWebsite() {
     video2.pause();
-
-    video2.style.display =
-      "none";
-
-    tapArea.style.display =
-      "none";
-
-    confetti.innerHTML =
-      "";
-
-    canvaContainer.classList.add(
-      "show"
-    );
-
-    canvaFrame.src =
-      CANVA_URL;
-
+    video2.style.display = "none";
+    tapArea.style.display = "none";
+    confetti.innerHTML = "";
+    window.location.href = "https://zekra.link/hhennaa";
   }
 
 
@@ -989,28 +874,13 @@
       }
 
 
-      const started =
-        await startMusic();
+      opened = true;
+      soundMessage.classList.remove("show");
 
-
-      if (started) {
-
-        opened = true;
-
-        soundMessage.classList.remove(
-          "show"
-        );
-
-        showCanva();
-
-        return;
-
-      }
-
-
-      soundMessage.classList.add(
-        "show"
-      );
+      // Attempt playback, then redirect either way.
+      // Audio stops when the browser navigates to the destination.
+      startMusic();
+      openInvitationWebsite();
 
 
     },
