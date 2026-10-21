@@ -1,4 +1,4 @@
-<!DOCTYPE html> //
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -389,6 +389,46 @@
 
       }
 
+    }
+
+
+
+    /* =========================
+       CANVA INVITATION EMBED
+    ========================= */
+    #invitationEmbed {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      overflow: auto;
+      background: #ffffff;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #invitationEmbed .canva-embed-frame {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-top: 542.0937%;
+      padding-bottom: 0;
+      box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);
+      margin-top: 1.6em;
+      margin-bottom: 0.9em;
+      overflow: hidden;
+      border-radius: 8px;
+      will-change: transform;
+    }
+
+    #invitationEmbed iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border: none;
+      padding: 0;
+      margin: 0;
     }
 
   </style>
@@ -833,14 +873,17 @@
 
 
   /* =====================================================
-     REDIRECT TO THE REAL INVITATION WEBSITE
+     SHOW THE CANVA INVITATION EMBED
      ===================================================== */
   function openInvitationWebsite() {
+    video1.pause();
     video2.pause();
+    video1.style.display = "none";
     video2.style.display = "none";
     tapArea.style.display = "none";
     confetti.innerHTML = "";
-    window.location.href = "https://zekra.link/hhennaa";
+    soundMessage.classList.remove("show");
+    document.getElementById("invitationEmbed").style.display = "block";
   }
 
 
@@ -918,6 +961,24 @@
 
 </script>
 
+
+
+
+<!-- =========================
+     CANVA INVITATION EMBED
+========================= -->
+<div id="invitationEmbed">
+  <div class="canva-embed-frame">
+    <iframe
+      loading="lazy"
+      src="https://www.canva.com/design/DAHYpr0f594/aZh36UULk_c8VVopZBJlEw/view?embed"
+      allowfullscreen="allowfullscreen"
+      allow="fullscreen"
+      title="hhennaa invitation">
+    </iframe>
+  </div>
+  <a href="https://www.canva.com/design/DAHYpr0f594/aZh36UULk_c8VVopZBJlEw/view?utm_content=DAHYpr0f594&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">hhennaa</a> by Mariam
+</div>
 
 </body>
 
