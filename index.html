@@ -483,7 +483,6 @@
     muted
     playsinline
     webkit-playsinline
-    loop
     preload="auto"
   >
 
@@ -638,6 +637,19 @@
   video1.addEventListener(
     "ended",
     startVideo2
+  );
+
+
+  video2.addEventListener(
+    "ended",
+    async function () {
+
+      await startMusic();
+
+      window.location.href =
+        CANVA_URL;
+
+    }
   );
 
 
@@ -926,7 +938,22 @@
 
   function showCanva() {
 
-    window.location.href =
+    video2.pause();
+
+    video2.style.display =
+      "none";
+
+    tapArea.style.display =
+      "none";
+
+    confetti.innerHTML =
+      "";
+
+    canvaContainer.classList.add(
+      "show"
+    );
+
+    canvaFrame.src =
       CANVA_URL;
 
   }
